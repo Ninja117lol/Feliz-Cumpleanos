@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Feliz Cumple Mamá 🎂💖</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #fff;
+      margin-bottom: 40px;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      max-width: 500px;
+      font-size: 1.3rem;
+      animation: fadeIn 0.8s ease;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 10px;
+      background-color: #ff6f91;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #ff4e78;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9);}
+      to { opacity: 1; transform: scale(1);}
+    }
+
+    /* Globos */
+    .balloon {
+      position: absolute;
+      bottom: -150px;
+      width: 60px;
+      height: 80px;
+      border-radius: 50%;
+      background: #ff9a9e;
+      animation: floatUp 10s linear infinite;
+    }
+    .balloon::after {
+      content: '';
+      position: absolute;
+      width: 2px;
+      height: 40px;
+      background: #555;
+      left: 50%;
+      top: 80px;
+      transform: translateX(-50%);
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(1);}
+      100% { transform: translateY(-120vh) scale(1.1);}
+    }
+  </style>
+</head>
+<body>
+  <h1>💐 Feliz Cumple Mamá 💐</h1>
+  <div class="card" id="mensaje">
+    ¡Hoy celebramos tu día especial, mamá! 🎉
+  </div>
+  <button onclick="siguienteMensaje()">Siguiente ➡️</button>
+
+  <script>
+    const mensajes = [
+      "¡Hoy celebramos tu día especial, mamá! 🎉",
+      "Gracias por tu amor infinito y tu apoyo incondicional ❤️",
+      "Eres la luz de nuestra familia 🌟",
+      "Te mereces todo lo bonito del mundo 💕",
+      "¡Feliz cumpleaños mamá, te amo mucho! 🎂🎁"
+    ];
+    let index = 0;
+
+    function siguienteMensaje() {
+      index++;
+      if (index < mensajes.length) {
+        document.getElementById("mensaje").textContent = mensajes[index];
+      } else {
+        document.getElementById("mensaje").textContent = "🎉 Fin de los mensajes 🎉";
+      }
+    }
+
+    // Globos aleatorios
+    function crearGlobo(color) {
+      const globo = document.createElement("div");
+      globo.className = "balloon";
+      globo.style.left = Math.random() * 100 + "vw";
+      globo.style.background = color;
+      globo.style.animationDuration = (8 + Math.random() * 5) + "s";
+      document.body.appendChild(globo);
+
+      setTimeout(() => globo.remove(), 12000);
+    }
+
+    setInterval(() => {
+      const colores = ["#ff9a9e","#fad0c4","#fbc2eb","#a1c4fd","#c2e9fb"];
+      crearGlobo(colores[Math.floor(Math.random()*colores.length)]);
+    }, 2000);
+  </script>
+</body>
+</html>
